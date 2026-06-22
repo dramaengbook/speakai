@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>天編的英文簿 × Speak</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Playfair+Display:wght@700;900&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       1. Reset
+    ========================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================
+       2. 全域變數
+    ========================= */
+    :root {
+      --warm: #F5A623;
+      --warm-light: #FDF3E0;
+      --warm-mid: #FAEBD0;
+      --cream: #FFFBF4;
+
+      --brown: #5C3D2E;
+      --brown-light: #8B6A5A;
+
+      --pink: #F4A7B9;
+      --blue-accent: #4A90C4;
+      --speak-blue: #1C49FF;
+
+      --text: #2D1B0E;
+      --text-muted: #8B6A5A;
+
+      --radius: 20px;
+      --shadow: 0 4px 24px rgba(92, 61, 46, 0.10);
+    }
+
+    /* =========================
+       3. 頁面基礎設定
+    ========================= */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Noto Sans TC', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      max-width: 430px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       4. Header
+    ========================= */
+    .header {
+      min-height: 320px;
+      padding: 40px 24px;
+
+      background:
+        radial-gradient(circle at top left, rgba(245, 166, 35, 0.45), transparent 35%),
+        linear-gradient(
+          160deg,
+          rgba(30, 18, 10, 0.92) 0%,
+          rgba(45, 28, 16, 0.88) 55%,
+          rgba(92, 61, 46, 0.82) 100%
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      right: -80px;
+      bottom: -80px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    .header h1 {
+      color: #fff;
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .header h1 span {
+      color: var(--warm);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .header p {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       5. Button
+    ========================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--warm);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(245, 166, 35, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* =========================
+       6. Main
+    ========================= */
+    .main {
+      padding: 24px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--brown);
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* =========================
+       7. Card
+    ========================= */
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card-label {
+      display: inline-block;
+      background: var(--warm-light);
+      color: var(--brown);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* =========================
+       8. Feature List
+    ========================= */
+    .feature-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--warm-light);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--warm);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-size: 15px;
+      color: var(--brown);
+      margin-bottom: 4px;
+    }
+
+    .feature-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* =========================
+       9. Speak 區塊
+    ========================= */
+    .speak-box {
+      background: linear-gradient(160deg, var(--speak-blue), #5974ff);
+      color: #fff;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(28, 73, 255, 0.25);
+    }
+
+    .speak-box h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .speak-box p {
+      font-size: 14px;
+      line-height: 1.8;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .speak-box .btn {
+      background: #fff;
+      color: var(--speak-blue);
+    }
+
+    /* =========================
+       10. Footer
+    ========================= */
+    .footer {
+      padding: 28px 24px 36px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       11. RWD
+    ========================= */
+    @media (max-width: 430px) {
+      body {
+        max-width: 100%;
+      }
+
+      .header {
+        min-height: 300px;
+        padding: 36px 20px;
+      }
+
+      .header h1 {
+        font-size: 30px;
+      }
+
+      .main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================
+       Header
+  ========================= -->
+  <header class="header">
+    <div class="header-content">
+      <div class="badge">ENGLISH NOTEBOOK × SPEAK</div>
+
+      <h1>
+        天編的英文簿<br>
+        <span>Speak</span>
+      </h1>
+
+      <p>
+        把英文單字、句型、口說練習整理成一本<br>
+        好看、好記、好複習的英文學習筆記。
+      </p>
+
+      <div class="header-buttons">
+        <a href="#learn" class="btn btn-primary">開始學習</a>
+        <a href="#speak" class="btn btn-outline">了解 Speak</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+       Main
+  ========================= -->
+  <main class="main">
+
+    <!-- 學習介紹 -->
+    <section id="learn" class="section">
+      <h2 class="section-title">今天想學什麼？</h2>
+      <p class="section-desc">
+        你可以把每天學到的單字、句子、發音與情境例句整理在這裡，讓英文學習變得更有系統。
+      </p>
+
+      <div class="card">
+        <span class="card-label">Vocabulary</span>
+        <h3>單字筆記</h3>
+        <p>
+          記錄常用單字、中文意思、例句與相似詞，方便之後快速複習。
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="card-label">Speaking</span>
+        <h3>口說練習</h3>
+        <p>
+          透過日常情境句練習英文表達，讓英文不只是看得懂，也能說得出來。
+        </p>
+      </div>
+
+      <div class="card">
+        <span class="card-label">Review</span>
+        <h3>複習清單</h3>
+        <p>
+          把容易忘記的單字與句型集中整理，建立自己的英文複習節奏。
+        </p>
+      </div>
+    </section>
+
+    <!-- 功能特色 -->
+    <section class="section">
+      <h2 class="section-title">學習方式</h2>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">1</div>
+          <div class="feature-text">
+            <h4>先理解意思</h4>
+            <p>用中文快速理解單字與句子的使用情境。</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">2</div>
+          <div class="feature-text">
+            <h4>再看例句</h4>
+            <p>透過生活化例句，知道英文實際怎麼用。</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">3</div>
+          <div class="feature-text">
+            <h4>最後開口說</h4>
+            <p>搭配 Speak 練習，把輸入變成真正能說出口的英文。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speak 區塊 -->
+    <section id="speak" class="section">
+      <div class="speak-box">
+        <h2>Speak 練口說</h2>
+        <p>
+          學英文不只要背單字，也要能在真實情境中開口。
+          透過 Speak 練習發音、句型與日常對話，讓英文更自然。
+        </p>
+        <a href="#" class="btn">前往練習</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================
+       Footer
+  ========================= -->
+  <footer class="footer">
+    <p>© 2026 天編的英文簿 × Speak</p>
+  </footer>
+</body>
+</html>
