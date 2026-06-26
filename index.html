@@ -342,6 +342,22 @@
   }
   .tracker-btn:active{transform:translateY(1px);box-shadow:0 2px 8px rgba(245,166,35,0.35)}
 
+/* ── FLOATING SIDE CTA ── */
+.float-cta{
+  position:fixed;right:0;top:60%;transform:translateY(-50%);
+  z-index:999;
+  background:linear-gradient(135deg,var(--speak-blue),#3A6FFF);
+  color:#fff;text-decoration:none;
+  writing-mode:vertical-rl;text-orientation:mixed;
+  padding:16px 9px;
+  border-radius:14px 0 0 14px;
+  font-size:13px;font-weight:700;letter-spacing:.05em;
+  box-shadow:-4px 4px 16px rgba(28,73,255,0.35);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.float-cta span{display:inline-block;transform:rotate(180deg)}
+.float-cta:active{transform:translateY(-50%) translateX(2px)}
+
 /* ── iOS DOWNLOAD MODAL ── */
 .ios-modal-overlay{
   display:none;position:fixed;inset:0;
@@ -690,6 +706,7 @@
 
 
 
+<a class="float-cta" href="https://www.speak.com/tw/purchase-inf-general?utm_source=influencer_instagram&utm_campaign=tw_2026.06_TW_26Q3_DramaEngbook_web_tw-en_instagram_video-short_micro_performance_adboost_na" target="_blank">點我試用</a>
 <script>
 const sections = ['direction','week','habit','tracker','cta'];
 const navItems = document.querySelectorAll('.nav-tab');
